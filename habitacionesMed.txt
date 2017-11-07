@@ -1,0 +1,41 @@
+[
+    {
+        "hotel_id": "05001",
+        "room_type": "L",
+        "capacity": 3,
+        "price": 4000,
+        "currency": "COP",
+        "room_thumbnail": "http://www.hotelesdann.com/dann-carlton-medellin/wp-content/uploads/sites/22/2016/09/Double-Full-View-2.jpg",
+        "description": "Incluye Television con DirectTV, WiFi, Ventilador de techo, Jacuzzi, Bar, Aire Acondicionado, Camas con colchon de agua, mesa de ping pong, mesa de billar, bolos, caja fuerte, radio BOSE web con conexión para Ipod, telefono privado, iluminacion LED, 2 baños privados, vista a la iglesia del parque de la milagrosa.",
+        "beds": {
+            "simple": "3",
+            "double": "0"
+        }
+    },
+    {
+        "hotel_id": "05001",
+        "room_type": "L",
+        "capacity": 4,
+        "price": 4664000,
+        "currency": "COP",
+        "room_thumbnail": "http://www.hotelesdann.com/dann-carlton-medellin/wp-content/uploads/sites/22/2016/09/Double-Full-View-2.jpg",
+        "description": "Incluye Television con DirectTV, WiFi, Ventilador de techo, Jacuzzi, Bar, Aire Acondicionado, Camas con colchon de agua, mesa de ping pong, mesa de billar, bolos, caja fuerte, radio BOSE web con conexión para Ipod, telefono privado, iluminacion LED, 2 baños privados, vista a la iglesia del parque de la milagrosa.",
+        "beds": {
+            "simple": "0",
+            "double": "2"
+        }
+    },
+    {
+        "hotel_id": "05001",
+        "room_type": "S",
+        "capacity": 2,
+        "price": 4664000,
+        "currency": "COP",
+        "room_thumbnail": "http://www.hotelesdann.com/dann-carlton-medellin/wp-content/uploads/sites/22/2016/09/Double-Full-View-2.jpg",
+        "description": "Incluye Television con DirectTV, WiFi, Ventilador de techo, Jacuzzi, Bar, Aire Acondicionado, Camas con colchon de agua, mesa de ping pong, mesa de billar, bolos, caja fuerte, radio BOSE web con conexión para Ipod, telefono privado, iluminacion LED, 2 baños privados, vista a la iglesia del parque de la milagrosa.",
+        "beds": {
+            "simple": "0",
+            "double": "1"
+        }
+    }
+]

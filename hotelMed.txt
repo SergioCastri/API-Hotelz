@@ -1,0 +1,26 @@
+{
+	"hotel_id":"05001",
+	"hotel_name":"Dann Cartón",
+	"hotel_location":{
+		"address":"Cra 30 N°42-80",
+		"lat":"6.236778",
+		"long":"-75.555098"
+	},
+	"hotel_thumbnail":"https://t-ec.bstatic.com/images/hotel/max500/106/106656270.jpg",
+	"check_in":"15:00",
+	"check_out":"13:00",
+	"hotel_website":"https://www.danncarton.com.co"
+},
+{
+	"hotel_id":"11001",
+	"hotel_name":"Dann Cartón",
+	"hotel_location":{
+		"address":"Cra 15 Bis # 92",
+		"lat":"4.601013848421896",
+		"long":"-74.08367651730077"
+	},
+	"hotel_thumbnail":"https://static.iris.net.co/semana/upload/images/2016/6/4/476532_1.jpg",
+	"check_in":"15:00",
+	"check_out":"13:00",
+	"hotel_website":"https://www.danncarton.com.co"
+}
