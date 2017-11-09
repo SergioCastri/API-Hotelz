@@ -105,7 +105,7 @@ function saveReserve(req, res) { //función para guardar una reserva
     || req.body.user.email == null || req.body.user.email == ""
     || req.body.user.phone_number == null || req.body.user.phone_number == "") {
     res.status(400).send({"message": "Error llenando los campos"});
-    return;
+    return "se deben llenar todos los campos";
   }
 
   var reserve = new Reserve({                   //Se crea la variable reserve que es donde se almacenaran los datos en JSON

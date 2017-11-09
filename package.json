@@ -8,7 +8,7 @@
     "mongo"
   ],
   "scripts": {
-    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js",
+    "test": "mocha",
   },
   "author": "",
   "license": "ISC",
