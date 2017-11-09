@@ -1,6 +1,6 @@
 var express = require('express'); //libreria de express
 var bodyParser = require('body-parser'); //Para manejar solicitudes POST en Express.js versión 4 y superior
-var routes = require('./routes'); //manejador de rutas de express
+var routes = require('./app/routes'); //manejador de rutas de express
 var cors = require('cors');
 
 var app = express();  //crea el servicio
