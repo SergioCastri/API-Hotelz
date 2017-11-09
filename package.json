@@ -7,12 +7,16 @@
     "Node",
     "mongo"
   ],
+  "scripts": {
+    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js",
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "mocha": "^4.0.1",
     "mongoose": "^4.11.9",
     "nodemon": "^1.12.1",
     "underscore": "^1.8.3"
