@@ -26,10 +26,22 @@ chai.use(chaiHttp);
 var ah = ApiHotelz;
 
 describe('correct params in url', function() {
-  it('L = l o S = s', function() {
-    var res = ApiHotelz.valiDate(2017-10-30, 2017-10-31, 05001, 3, 'l');
-    assert.equal('L y S', res);
+  it('S = s', function() {
+    var res = ApiHotelz.valiDate(2017-10-30, 2017-10-31, 05001, 3, 's');
+    assert.equal('S', res);
   });
+
+  it('L = l', function() {
+    var res = ApiHotelz.valiDate(2017-10-30, 2017-10-31, 05001, 3, 'l');
+    assert.equal('L', res);
+  });
+
+/*]  it('date_leave > date_arrive', function() {
+    var res = ApiHotelz.valiDate(2017-10-30, 2017-10-29, 05001, 3, 'L');
+    assert.equal('La fecha de salida debe ser superior a la de llegada', res);
+  });*/
+
+
 });
 
 describe('GET /v1/rooms', function() {

@@ -2,26 +2,29 @@ var models = require('./models.js');
 var schemas = require('./schemas.js');
 var json;
 
+
 function valiDate(arrive_date, leave_date, capacity, city, room_type){
-  if (room_type == 'l' || room_type == 's' ){
+
     if(room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
       room_type = 'L';
+      return 'L'
     }
     if(room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
       room_type = 'S';
+      return 'S'
     }
-    return 'L y S'
-  }
+
+
+/*  dates = (new Date(leave_date)).getTime() - (new Date(arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
+  if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
+    res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
+    return 'La fecha de salida debe ser superior a la de llegada';
+  }*/
 }
 
 function getRooms(req, res){ // función para obtener todos los cuartos disponibles
+  valiDate(req.query.arrive_date, req.query.leave_date, req.query.hosts, req.query.city, req.query.room_type);
 
-  if(req.query.room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-    req.query.room_type = 'L';
-  }
-  if(req.query.room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-    req.query.room_type = 'S';
-  }
   Room = models.getRoom();
   Reserve = models.getReserve();
   Hotel = models.getHotel();
@@ -34,11 +37,10 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
       json = doc;
 
       var dates = (new Date(req.query.leave_date)).getTime() - (new Date(req.query.arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
-
-      if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
-        res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
-        return;
-      }
+        if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
+          res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
+          return;
+        }
 
       dates = parseInt(dates / 86400000);             //recupera el numero de dias que se hospedara el usuario
       json[0].price = json[0].price * dates;  //calcula el precio segun la cantidad de dias que se hospedara ye l precio por dia de la habitacion
