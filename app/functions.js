@@ -73,7 +73,6 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
 function getAll(req, res){ // función para obtener todas las habitaciones
 
   Room.find({}, '-_id -__v', function(err, doc) {
-
       res.status(200).jsonp(doc);
   });
 
