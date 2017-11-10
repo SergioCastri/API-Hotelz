@@ -2,6 +2,17 @@ var models = require('./models.js');
 var schemas = require('./schemas.js');
 var json;
 
+function valiDate(arrive_date, leave_date, capacity, city, room_type){
+  if (room_type == 'l' || room_type == 's' ){
+    if(room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
+      room_type = 'L';
+    }
+    if(room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
+      room_type = 'S';
+    }
+    return 'L y S'
+  }
+}
 
 function getRooms(req, res){ // función para obtener todos los cuartos disponibles
 
@@ -173,5 +184,6 @@ module.exports = { // Exporta todos los metodos
   getRooms: getRooms,
   save: save,
   saveHotel: saveHotel,
-  saveReserve: saveReserve
+  saveReserve: saveReserve,
+  valiDate: valiDate
 };

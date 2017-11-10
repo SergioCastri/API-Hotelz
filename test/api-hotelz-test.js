@@ -8,7 +8,6 @@ var chaiHttp = require('chai-http');
 var should = require('should');
 var assert = require('assert');
 
-var ap = ApiHotelz;
 
 var request = supertest(app);
 var expect = chai.expect;
@@ -23,6 +22,15 @@ chai.use(chaiHttp);
   			    });;
 	});
 });*/
+
+var ah = ApiHotelz;
+
+describe('correct params in url', function() {
+  it('L = l o S = s', function() {
+    var res = ApiHotelz.valiDate(2017-10-30, 2017-10-31, 05001, 3, 'l');
+    assert.equal('L y S', res);
+  });
+});
 
 describe('GET /v1/rooms', function() {
 
