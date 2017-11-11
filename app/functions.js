@@ -3,18 +3,13 @@ var schemas = require('./schemas.js');
 var json;
 
 
-function valiDate(arrive_date, leave_date, capacity, city, room_type){
-
-    if(room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-      room_type = 'L';
-      return 'L'
-    }
-    if(room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-      room_type = 'S';
-      return 'S'
-    }
-
-
+function valiDateUrl(arrive_date, leave_date){
+  var arrDate = (new Date(arrive_date)).getTime();
+  var lveDate = (new Date(leave_date)).getTime();
+  var result = lveDate - arrDate;
+  if(result <= 0){
+    return 'The leave date should be higher than the arrive date';
+  }
 /*  dates = (new Date(leave_date)).getTime() - (new Date(arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
   if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
     res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
@@ -22,9 +17,48 @@ function valiDate(arrive_date, leave_date, capacity, city, room_type){
   }*/
 }
 
-function getRooms(req, res){ // función para obtener todos los cuartos disponibles
-  valiDate(req.query.arrive_date, req.query.leave_date, req.query.hosts, req.query.city, req.query.room_type);
+function valiCapaUrl(capacity){
+  if(capacity>5){
+    return 'Capacity Exceeded';
+  }
+}
 
+function valiCityUrl(city) {
+  if(city != 05001 || city != 11001){
+    return 'Invalid City';
+  }
+}
+
+function valiRoomTypeUrl(room_type){
+  if(room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
+    room_type = 'L';
+    return 'L';
+  }
+  if(room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
+    room_type = 'S';
+    return 'S';
+  }
+}
+
+function valiActualDate(arrive_date) {
+  var actual = (new Date()).getTime();
+  var arrDate = (new Date(arrive_date)).getTime();
+  if(actual > arrDate){
+    return 'Arrive date should be higher than actual date';
+  }
+}
+
+/*function valiDateReserve(arrive_date, leave_date){
+  if(!(((new Date(req.query.arrive_date)).getTime() >= arrive && (new Date(req.query.arrive_date)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
+      || ((new Date(req.query.leave_date)).getTime() > arrive && (new Date(req.query.arrive_date)).getTime() < leave))) {
+    return 'Invalid Date'
+  }
+}*/
+
+function getRooms(req, res){ // función para obtener todos los cuartos disponibles
+  valiCityUrl(req.query.city);
+  valiCapaUrl(req.query.hosts);
+  valiRoomTypeUrl(req.query.room_type);
   Room = models.getRoom();
   Reserve = models.getReserve();
   Hotel = models.getHotel();
@@ -36,12 +70,8 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
       }
       json = doc;
 
-      var dates = (new Date(req.query.leave_date)).getTime() - (new Date(req.query.arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
-        if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
-          res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
-          return;
-        }
-
+      valiDateUrl(req.query.arrive_date, req.query.leave_date);
+      dates = (new Date(req.query.leave_date)).getTime() - (new Date(req.query.arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
       dates = parseInt(dates / 86400000);             //recupera el numero de dias que se hospedara el usuario
       json[0].price = json[0].price * dates;  //calcula el precio segun la cantidad de dias que se hospedara ye l precio por dia de la habitacion
 
@@ -160,6 +190,21 @@ function saveReserve(req, res) { //función para guardar una reserva
       return;
   }
 
+  var rooms = Room.find({}, '-_id -__v', function(err, doc) {
+      res.status(200).jsonp(doc);
+  });
+
+  for (var i = 0; i < rooms.length; i++) {
+    if (rooms[i].hotel_id == reserve.hotel_id && rooms[i].room_type == reserve.room_type && rooms[i].capacity == reserve.capacity){
+      if(rooms[i].rooms_number <= 0){
+        res.status(400).send({"message":"La habitacion no está disponible"});
+        return;
+      }else{
+        rooms[i].rooms_number = rooms[i].rooms_number - 1;
+      }
+    }
+  }
+
   reserve.save(function(err, doc) {       //Se guarda la reservacion
     if(err) {
       res.status(500).send({"message": "Error en el servidor"});
@@ -187,5 +232,9 @@ module.exports = { // Exporta todos los metodos
   save: save,
   saveHotel: saveHotel,
   saveReserve: saveReserve,
-  valiDate: valiDate
+  valiDateUrl : valiDateUrl,
+  valiCapaUrl : valiCapaUrl,
+  valiRoomTypeUrl : valiRoomTypeUrl,
+  valiCityUrl : valiCityUrl,
+  valiActualDate : valiActualDate
 };
