@@ -3,6 +3,10 @@ var schemas = require('./schemas.js');
 var json;
 
 
+Room = models.getRoom();
+Reserve = models.getReserve();
+Hotel = models.getHotel();
+
 function valiDateUrl(arrive_date, leave_date){
   var arrDate = (new Date(arrive_date)).getTime();
   var lveDate = (new Date(leave_date)).getTime();
@@ -59,9 +63,6 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
   valiCityUrl(req.query.city);
   valiCapaUrl(req.query.hosts);
   valiRoomTypeUrl(req.query.room_type);
-  Room = models.getRoom();
-  Reserve = models.getReserve();
-  Hotel = models.getHotel();
 	Room.find({hotel_id: req.query.city, room_type: req.query.room_type, capacity: parseInt(req.query.hosts)},  //Busca habitaciones filtrando por
    '-_id -__v -hotel_id', function(err, doc) {                                                                //id del hotel, por tipo de habitaciones
       if(doc.length == 0) {                                                                                   //y por capacidad de esta, ademas de
@@ -190,28 +191,46 @@ function saveReserve(req, res) { //función para guardar una reserva
       return;
   }
 
-  var rooms = Room.find({}, '-_id -__v', function(err, doc) {
-      res.status(200).jsonp(doc);
+  var rooms = [];
+
+   Room.find({hotel_id: reserve.hotel_id, room_type: reserve.room_type, capacity: parseInt(reserve.capacity)}, '-_id -__v', function(err, doc) {
+
+      rooms = doc;
+
+      var quantityReserves = [];
+
+      Reserve.find({hotel_id: reserve.hotel_id, room_type: reserve.room_type, capacity: parseInt(reserve.capacity)},     //busca las reservaciones existentes
+       '-_id -__v',                                                                                               //por room_type, hotel_id, y capacidad
+       function(err, doc) {
+
+        for(var i = 0; i < doc.length; i++) {                              //busca las habitaciones que hay disponibles segun la consulta que
+          var arrive = (new Date(doc[i].arrive_date)).getTime();           //el susario realizó
+          var leave = (new Date(doc[i].leave_date)).getTime();
+
+          if(((new Date(reserve.arrive_date)).getTime() >= arrive && (new Date(reserve.arrive_date)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
+              || ((new Date(reserve.leave_date)).getTime() > arrive && (new Date(reserve.arrive_date)).getTime() < leave)) {
+            quantityReserves.push(doc[i]);                                                       //Quita el campo cuantityReserves del JSON para evitar mostrarlo
+          } else {                                                                    //si la consulta es disponible
+            doc[i] = "";
+          }
+        }
+
+        if(quantityReserves.length >= rooms[0].rooms_number) {     
+            res.status(400).send({"message": "La habitación no se encuentra disponible en ese rango de fechas"});
+            return;
+        }
+
+        reserve.save(function(err, doc) {       //Se guarda la reservacion
+          if(err) {
+            res.status(500).send({"message": "Error en el servidor"});
+            return;
+          }        
+          res.status(200).send({"reservation_id": reserve._id});
+        });
+
+    });
   });
 
-  for (var i = 0; i < rooms.length; i++) {
-    if (rooms[i].hotel_id == reserve.hotel_id && rooms[i].room_type == reserve.room_type && rooms[i].capacity == reserve.capacity){
-      if(rooms[i].rooms_number <= 0){
-        res.status(400).send({"message":"La habitacion no está disponible"});
-        return;
-      }else{
-        rooms[i].rooms_number = rooms[i].rooms_number - 1;
-      }
-    }
-  }
-
-  reserve.save(function(err, doc) {       //Se guarda la reservacion
-    if(err) {
-      res.status(500).send({"message": "Error en el servidor"});
-      return;
-    }
-    res.status(200).send({"reservation_id": reserve._id});
-  });
 
 };
 
