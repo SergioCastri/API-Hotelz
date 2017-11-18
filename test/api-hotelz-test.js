@@ -1,5 +1,3 @@
-var express = require('express');
-var ApiHotelz = require('../app/functions.js');
 var assert = require('assert');
 var app = require('../app.js');
 var supertest = require('supertest');
@@ -7,7 +5,7 @@ var	chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = require('should');
 var assert = require('assert');
-
+var models = require('../app/models.js');
 
 var request = supertest(app);
 var expect = chai.expect;
@@ -93,7 +91,11 @@ describe('GET /v1/rooms', function() {
 							should.exist(res.body[0].beds.simple);
 							should.exist(res.body[0].beds.double);
   		    		done();
+
+              models.close();
+
   			    });
+
     });
 
 });

@@ -2,9 +2,15 @@ var schemas = require('./schemas.js');
 var mongoose = require('mongoose');  //mongoose es algo que nos permite facilidad a la hora de manejar esquemas y hacer consultar
 var Schema = mongoose.Schema;    //se defina una variable Schema
 
+var url = "mongodb://admin-node:toor@ds227525.mlab.com:27525/hotelznode";
 
-mongoose.connect("mongodb://admin-node:toor@ds227525.mlab.com:27525/hotelznode");
+var moon = mongoose.connect(url, {
+  useMongoClient: true
+});
 
+function close() {
+  moon.close();
+}
 
 var room_schema = new Schema(schemas.getRoomsSchema());  //Creacion del esquema como tal
 var hotel_schema = new Schema(schemas.getHotelSchema());
@@ -30,5 +36,6 @@ function getReserve(){
 module.exports = { // Exporta todos los modelos
 	getRoom : getRoom,
   getHotel : getHotel,
-  getReserve : getReserve
+  getReserve : getReserve,
+  close: close
 };
