@@ -15,6 +15,7 @@ router.get('/', function(req, res) {
 
 router.get('/v1/rooms', db.getRooms);  		 //Ruta para obtener todas las habitaciones disponibles
 router.get('/v1/getAll', db.getAll);
+router.get('/v1/reservations', db.getReservations);
 //router.post('/v1/save', db.save);
 //router.post('/v1/saveHotel', db.saveHotel);
 router.post('/v1/rooms/reserve', db.saveReserve);  //Ruta para realizar una reservacion

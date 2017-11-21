@@ -53,6 +53,7 @@ var reserveSchemaJSON = { //estructura del esquema, en formato json, excelente p
     phone_number: String
   }
 }
+
 function getReservesSchema(){
   return reserveSchemaJSON;
 }

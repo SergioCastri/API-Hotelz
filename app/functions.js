@@ -1,5 +1,17 @@
 var models = require('./models.js');
 var schemas = require('./schemas.js');
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+admin.initializeApp({
+  credential: admin.credential.cert({
+    projectId: "apihotelznode",
+    clientEmail: "foo@apihotelznode.iam.gserviceaccount.com",
+    privateKey: "AIzaSyAI7M3n5HFlfkjIUJRxgBG11Ho8sIAdIHc"
+  }),
+  databaseURL: "https://apihotelznode.firebaseio.com"
+});
+
 var json;
 
 
@@ -58,6 +70,22 @@ function valiActualDate(arrive_date) {
     return 'Invalid Date'
   }
 }*/
+
+function getReservations(req, res){
+  var idToken = req.header.Authorization;
+  admin.auth().verifyIdToken(idToken)
+  .then(function(decodedToken) {
+    var uid = decodedToken.uid;
+    // ...
+  
+
+
+  }).catch(function(error) {
+    res.status(400).send({"message": "Token invalido"});
+  });
+  Reserve.find({}, '-_id -__v', function(err, doc) {
+      res.status(200).jsonp(doc);
+});
 
 function getRooms(req, res){ // función para obtener todos los cuartos disponibles
   valiCityUrl(req.query.city);
