@@ -1,8 +1,6 @@
 var models = require('./models.js');
 var schemas = require('./schemas.js');
-var admin = require("firebase-admin");
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: "apihotelznode",
@@ -71,19 +69,32 @@ function valiActualDate(arrive_date) {
   }
 }*/
 
-function getReservations(req, res){
+function signInWithGoogle(){
   var idToken = req.header.Authorization;
   admin.auth().verifyIdToken(idToken)
   .then(function(decodedToken) {
     var uid = decodedToken.uid;
-    // ...
-  
-
-
+    admin.auth().getUser(uid)
+      .then(function(userRecord) {
+        console.log("Successfully fetched user data:", userRecord.toJSON());
+        return userRecord.toJSON();
+      })
+      .catch(function(error) {
+        console.log("Error fetching user data:", error);
+      });
   }).catch(function(error) {
     res.status(400).send({"message": "Token invalido"});
   });
-  Reserve.find({}, '-_id -__v', function(err, doc) {
+}
+
+
+
+function getReservations(req, res){
+  fbjson = signInWithGoogle();
+  var emailUser = fbjson.email;
+  Reserve.find({user.email : emailUser}, '-_id -__v', function(err, doc) {
+      
+
       res.status(200).jsonp(doc);
 });
 
@@ -180,6 +191,7 @@ function saveReserve(req, res) { //función para guardar una reserva
   }
 
   var reserve = new Reserve({                   //Se crea la variable reserve que es donde se almacenaran los datos en JSON
+      state: "A",
       arrive_date: req.body.arrive_date,
       leave_date: req.body.leave_date,
       room_type: req.body.room_type,

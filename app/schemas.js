@@ -37,6 +37,7 @@ function getRoomsSchema(){
 }
 
 var reserveSchemaJSON = { //estructura del esquema, en formato json, excelente para nodo porque json surge de js y node esta basado en js
+  state: String,
   arrive_date: String,
   leave_date: String,
   room_type: String,
