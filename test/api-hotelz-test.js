@@ -101,45 +101,45 @@ describe('GET /v1/rooms', function() {
 							should.exist(res.body[0].beds.double);
   		    		done();
   			    });
-});
+          });
 
-it('6. should return a correct Json Object of getReservations', function(done) {
-    request.get('/v1/reservations')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res){
-          if (err) return done(err);
-          should.not.exist(err);
-          should.exist(res);
-          res.body.should.be.an.Object;
-          for (var i = 0; i < res.body.length; i++) {
-            should.exist(res.body[i].hotel_id);
-            should.exist(res.body[i].hotel_name);
-            should.exist(res.body[i].hotel_thumbnail);
-            should.exist(res.body[i].check_in);
-            should.exist(res.body[i].hotel_website);
-            should.exist(res.body[i].check_out);
-            should.exist(res.body[i].hotel_location.address);
-            should.exist(res.body[i].hotel_location.lat);
-            should.exist(res.body[i].hotel_location.long);
-            for (var j = 0; j < res.body[i].reservation.length; j++) {
-              should.exist(res.body[i].reservation[j].state);
-              should.exist(res.body[i].reservation[j].arrive_date);
-              should.exist(res.body[i].reservation[j].leave_date);
-              should.exist(res.body[i].reservation[j].room_type);
-              should.exist(res.body[i].reservation[j].capacity);
-              should.exist(res.body[i].reservation[j].hotel_id);
-              should.exist(res.body[i].reservation[j].beds.simple);
-              should.exist(res.body[i].reservation[j].beds.double);
-              should.exist(res.body[i].reservation[j].user.doc_type);
-              should.exist(res.body[i].reservation[j].user.doc_id);
-              should.exist(res.body[i].reservation[j].user.email);
-              should.exist(res.body[i].reservation[j].user.phone_number);
+  it('6. should return a correct Json Object of getReservations', function(done) {
+      request.get('/v1/reservations')
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .end(function(err, res){
+            if (err) return done(err);
+            should.not.exist(err);
+            should.exist(res);
+            res.body.should.be.an.Object;
+            for (var i = 0; i < res.body.length; i++) {
+              should.exist(res.body[i].hotel_id);
+              should.exist(res.body[i].hotel_name);
+              should.exist(res.body[i].hotel_thumbnail);
+              should.exist(res.body[i].check_in);
+              should.exist(res.body[i].hotel_website);
+              should.exist(res.body[i].check_out);
+              should.exist(res.body[i].hotel_location.address);
+              should.exist(res.body[i].hotel_location.lat);
+              should.exist(res.body[i].hotel_location.long);
+              for (var j = 0; j < res.body[i].reservation.length; j++) {
+                should.exist(res.body[i].reservation[j].state);
+                should.exist(res.body[i].reservation[j].arrive_date);
+                should.exist(res.body[i].reservation[j].leave_date);
+                should.exist(res.body[i].reservation[j].room_type);
+                should.exist(res.body[i].reservation[j].capacity);
+                should.exist(res.body[i].reservation[j].hotel_id);
+                should.exist(res.body[i].reservation[j].beds.simple);
+                should.exist(res.body[i].reservation[j].beds.double);
+                should.exist(res.body[i].reservation[j].user.doc_type);
+                should.exist(res.body[i].reservation[j].user.doc_id);
+                should.exist(res.body[i].reservation[j].user.email);
+                should.exist(res.body[i].reservation[j].user.phone_number);
+              }
             }
-          }
-          done();
+            done();
+          });
         });
-});
 });
 
 describe('DELETE /v1/reservations', function() {
@@ -148,8 +148,8 @@ describe('DELETE /v1/reservations', function() {
             .expect(200)
             .end(function(err, res){
   		    		if (err) return done(err);
-  					  done();
+  					  done();              
+              models.close();
   			    });
-    models.close();
-    });      
+    });
 });
