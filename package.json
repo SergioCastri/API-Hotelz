@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js",
-    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov && codecov -t fc889d919f4d48ccb23b8df446e4f2e3"
+    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov && codecov -t d94adee3-91ea-4fba-b051-543979ce4789"
   },
   "author": "",
   "license": "ISC",
