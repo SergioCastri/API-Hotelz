@@ -1,4 +1,4 @@
-var ApiHotelz = require('../app/functions.js');
+var ApiHotelz = require('../app/validations.js');
 var assert = require('assert');
 
 describe('correct params in url', function() {

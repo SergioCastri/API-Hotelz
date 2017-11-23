@@ -1,6 +1,7 @@
 var models = require('./models.js');
 var schemas = require('./schemas.js');
 var admin = require("firebase-admin");
+var validations = require('./validations.js');
 
 
 admin.initializeApp({
@@ -19,51 +20,6 @@ Room = models.getRoom();
 Reserve = models.getReserve();
 Hotel = models.getHotel();
 HotelRes = models.getHotelRes();
-
-function valiDateUrl(arrive_date, leave_date){
-  var arrDate = (new Date(arrive_date)).getTime();
-  var lveDate = (new Date(leave_date)).getTime();
-  var result = lveDate - arrDate;
-  if(result <= 0){
-    return 'The leave date should be higher than the arrive date';
-  }
-/*  dates = (new Date(leave_date)).getTime() - (new Date(arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
-  if(dates <= 0) {                                          //Valida que la fecha de salida sea mayor a la de entrada
-    res.status(200).send({"message": "La fecha de salida debe ser superior a la de llegada"});
-    return 'La fecha de salida debe ser superior a la de llegada';
-  }*/
-}
-
-function valiCapaUrl(capacity){
-  if(capacity>5){
-    return 'Capacity Exceeded';
-  }
-}
-
-function valiCityUrl(city) {
-  if(city != 05001 || city != 11001){
-    return 'Invalid City';
-  }
-}
-
-function valiRoomTypeUrl(room_type){
-  if(room_type == 'l') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-    room_type = 'L';
-    return 'L';
-  }
-  if(room_type == 's') {    //validacion para que no incluyan masyusculas ni minusculas en la consulta de la habitacion
-    room_type = 'S';
-    return 'S';
-  }
-}
-
-function valiActualDate(arrive_date) {
-  var actual = (new Date()).getTime();
-  var arrDate = (new Date(arrive_date)).getTime();
-  if(actual > arrDate){
-    return 'Arrive date should be higher than actual date';
-  }
-}
 
 /*function valiDateReserve(arrive_date, leave_date){
   if(!(((new Date(req.query.arrive_date)).getTime() >= arrive && (new Date(req.query.arrive_date)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
@@ -144,7 +100,6 @@ function getReservations(req, res){
 
 
 function deleteReservations(req, res) {
-
   Reserve.findOne({_id : req.query.reserve_id}, '-__v', function(err, doc) {
     if(err) {
         res.status(500).send({"message": "No existe esa reservación"});
@@ -158,9 +113,9 @@ function deleteReservations(req, res) {
 };
 
 function getRooms(req, res){ // función para obtener todos los cuartos disponibles
-  valiCityUrl(req.query.city);
-  valiCapaUrl(req.query.hosts);
-  valiRoomTypeUrl(req.query.room_type);
+  validations.valiCityUrl(req.query.city);
+  validations.valiCapaUrl(req.query.hosts);
+  validations.valiRoomTypeUrl(req.query.room_type);
 	Room.find({hotel_id: req.query.city, room_type: req.query.room_type, capacity: parseInt(req.query.hosts)},  //Busca habitaciones filtrando por
    '-_id -__v -hotel_id', function(err, doc) {                                                                //id del hotel, por tipo de habitaciones
       if(doc.length == 0) {                                                                                   //y por capacidad de esta, ademas de
@@ -169,7 +124,7 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
       }
       json = doc;
 
-      valiDateUrl(req.query.arrive_date, req.query.leave_date);
+      validations.valiDateUrl(req.query.arrive_date, req.query.leave_date);
       dates = (new Date(req.query.leave_date)).getTime() - (new Date(req.query.arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
       dates = parseInt(dates / 86400000);             //recupera el numero de dias que se hospedara el usuario
       json[0].price = json[0].price * dates;  //calcula el precio segun la cantidad de dias que se hospedara ye l precio por dia de la habitacion
@@ -363,11 +318,6 @@ module.exports = { // Exporta todos los metodos
   saveHotel: saveHotel,
   saveHotelRes: saveHotelRes,
   saveReserve: saveReserve,
-  valiDateUrl : valiDateUrl,
-  valiCapaUrl : valiCapaUrl,
-  valiRoomTypeUrl : valiRoomTypeUrl,
-  valiCityUrl : valiCityUrl,
-  valiActualDate : valiActualDate,
   getReservations : getReservations,
   deleteReservations: deleteReservations
 };

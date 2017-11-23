@@ -3,7 +3,7 @@ var port = process.env.PORT || 3001;
 var firebase = require('firebase');
 
 server.listen(port, function(){
-  console.log('bla');
+  console.log('listening in port ' + port + '...');
 })
 
 var config = {
