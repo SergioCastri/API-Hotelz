@@ -105,37 +105,54 @@ function getReservations(req, res){
       return;
     }else{
       jsonRes = doc;
-      json1 = doc[1];  // Bog 
+      json1 = doc[1];  // Bog
       json = doc[0];   // Med
-      Reserve.find({ 'user.email': email }, '-__v', function(err, doc) {   
-                    for (let i = 0; i < doc.length; i++) {
-            if(doc[i].hotel_id == '05001'){
-              json.reservation[j] = doc[i];
-              j++;
-            }
+      Reserve.find({ 'user.email': email }, '-__v', function(err, doc) {
+        var actual = (new Date()).getTime();
+        for (let i = 0; i < doc.length; i++) {
+          var lvDate = (new Date(doc[i].leave_date)).getTime();
+          if(actual > lvDate){
+            doc[i].state = 'D';
+            doc[i].save(function() {
+            })
           }
-          j=0
-          for (let i = 0; i < doc.length; i++) {
-            if(doc[i].hotel_id == '11001'){
-              json1.reservation[j] = doc[i];
-              j++;
-            }
+          if(doc[i].hotel_id == '05001'){
+            json.reservation[j] = doc[i];
+            j++;
           }
+        }
+        j=0
+        for (let i = 0; i < doc.length; i++) {
+          var lvDate = (new Date(doc[i].leave_date)).getTime();
+          if(actual > lvDate){
+            doc[i].state = 'D';
+            doc[i].save(function() {
+            })
+          }
+          if(doc[i].hotel_id == '11001'){
+            json1.reservation[j] = doc[i];
+            j++;
+          }
+        }
         jsonRes[0] = json;
         jsonRes[1] = json1;
-        res.status(200).send(jsonRes); 
+        res.status(200).send(jsonRes);
       });
     }
   });
 };
 
 
-function deleteReservations(req, res) { 
-  Reserve.findOneAndRemove({_id : req.query.reserve_id}, '-__v', function(err, doc) {
+function deleteReservations(req, res) {
+
+  Reserve.findOne({_id : req.query.reserve_id}, '-__v', function(err, doc) {
     if(err) {
         res.status(500).send({"message": "No existe esa reservación"});
     }else{
-       res.status(200).send({"message": "No existe esa reservación"});
+      doc.state = 'C';
+      doc.save(function() {
+        res.status(200).send({"message": "Su reserva fue cancelada exitosamente!!"});
+      })
     }
   });
 };
@@ -309,7 +326,7 @@ function saveReserve(req, res) { //función para guardar una reserva
           }
         }
 
-        if(quantityReserves.length >= rooms[0].rooms_number) {     
+        if(quantityReserves.length >= rooms[0].rooms_number) {
             res.status(400).send({"message": "La habitación no se encuentra disponible en ese rango de fechas"});
             return;
         }
@@ -318,7 +335,7 @@ function saveReserve(req, res) { //función para guardar una reserva
           if(err) {
             res.status(500).send({"message": "Error en el servidor"});
             return;
-          }        
+          }
           res.status(200).send({"reservation_id": reserve._id});
         });
 
