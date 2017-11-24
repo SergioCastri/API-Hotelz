@@ -114,6 +114,7 @@ function deleteReservations(req, res) {
         res.status(500).send({"message": "No existe esa reservación"});
     }else{
       doc.state = 'C';
+
       doc.save(function() {
         res.status(200).send({"message": "Su reserva fue cancelada exitosamente!!"});
       })

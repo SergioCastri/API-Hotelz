@@ -144,7 +144,7 @@ describe('GET /v1/rooms', function() {
 
 describe('DELETE /v1/reservations', function() {
     it('7. should return code 200 from getReservations function', function(done) {
-        request.delete('/v1/reservations?reserve_id=5a15e5b83a5bb352f4ec0425')
+        request.delete('/v1/reservations?reserve_id=5a18a164eafaa3057c1d987d')
             .expect(200)
             .end(function(err, res){
   		    		if (err) return done(err);
