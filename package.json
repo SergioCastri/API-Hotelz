@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js",
-    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov && codecov -t d94adee3-91ea-4fba-b051-543979ce4789"
+    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov && codecov -t d94adee3-91ea-4fba-b051-543979ce4789",
+    "codacy-coverage": "./node_modules/nyc/bin/nyc.js report --reporter=lcov --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage  && rm -rf ./coverage && codacy-coverage -t 07292f64a8a64660903ad214c7b9918d"
   },
   "author": "",
   "license": "ISC",
