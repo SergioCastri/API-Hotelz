@@ -6,10 +6,10 @@ Integrado con Codeship
 
 Integrantes
 
-Sergio Castrillón
-David Acevedo
-Cristian Berrio
-Juan Pablo Ospina
+Sergio Castrillón Vasquez
+David Acevedo García
+Cristian Berrio Pulido
+Juan Pablo Ospina Herrera
 
 [ ![Codeship Status for SergioCastri/API-Hotelz](https://app.codeship.com/projects/a7e76e40-ac7f-0135-0738-52e8b96e2dec/status?branch=master)](https://app.codeship.com/projects/257014)
 
