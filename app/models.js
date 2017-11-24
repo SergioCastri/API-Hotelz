@@ -16,12 +16,16 @@ var room_schema = new Schema(schemas.getRoomsSchema());  //Creacion del esquema 
 var hotel_schema = new Schema(schemas.getHotelSchema());
 var reserve_schema = new Schema(schemas.getReservesSchema());
 var hotelRes_schema = new Schema(schemas.getHotelResSchema());
+var reservations_schema = new Schema(schemas.getreservationsSchema());
+
 
 var Room = mongoose.model("Room", room_schema);  //creacion del modelo, este es que conecta con la bd, se le pasa el esquema de la tabla a//Creacion del esquema como tal
 var Hotel = mongoose.model("Hotel", hotel_schema);                                          // la que va a mapear
 var Reserve = mongoose.model("Reserve", reserve_schema);
 var HotelRes = mongoose.model("HotelRes", hotelRes_schema);
- 
+var Reservations = mongoose.model("Reservations", reservations_schema);
+
+
 
 function getRoom(){
   return Room;
@@ -39,10 +43,15 @@ function getHotelRes(){
   return HotelRes;
 }
 
+function getReservations(){
+  return Reservations;
+}
+
 module.exports = { // Exporta todos los modelos
   getRoom : getRoom,
   getHotel : getHotel,
   getHotelRes : getHotelRes,
   getReserve : getReserve,
+  getReservations : getReservations,
   close: close
 };

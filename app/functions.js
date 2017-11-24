@@ -25,6 +25,7 @@ Room = models.getRoom();
 Reserve = models.getReserve();
 Hotel = models.getHotel();
 HotelRes = models.getHotelRes();
+Reservations = models.getReservations();
 
 function signInWithGoogle(){
   var idToken = req.header.Authorization;
@@ -50,7 +51,7 @@ function getReservations(req, res){
   // var array[];
   var j=0;
   var email = "camigomez35@gmail.com";
-  var jsonRes;
+  var jsonRes, reserva;
   HotelRes.find({}, '-_id -__v', function(err, doc) {   //Busca los datos del hotel filtrando por codigo de este
     if(doc == null) {                                                                       //muestra en la consulta de la habitacion todos los datos
       res.status(200).jsonp({"message": "No existe el hotel"});
@@ -59,7 +60,7 @@ function getReservations(req, res){
       jsonRes = doc;
       json1 = doc[1];  // Bog
       json = doc[0];   // Med
-      Reserve.find({ 'user.email': email }, '-__v', function(err, doc) {
+      Reserve.find({ 'user.email': email }, '-_id -__v', function(err, doc) {
         var actual = (new Date()).getTime();
         for (let i = 0; i < doc.length; i++) {
           var valistateres = validations.valiStateReservationDate(doc[i].leave_date)
@@ -90,7 +91,17 @@ function getReservations(req, res){
         }
         jsonRes[0] = json;
         jsonRes[1] = json1;
-        res.status(200).send(jsonRes);
+        var rese = new Reservations();
+      //  Reservations.find(function(err,doc) {
+      //    console.log("dsdsd" + doc);
+    //      reserva = doc;
+    //      reserva[0].reservations = jsonRes;
+        rese.reservations[0] = jsonRes[0];
+        rese.reservations[1] = jsonRes[1];
+        rese._id = undefined;
+        res.status(200).send(rese);
+    //    })
+
       });
     }
   });
@@ -203,6 +214,7 @@ function saveReserve(req, res) { //función para guardar una reserva
   }
 
   var reserve = new Reserve({                   //Se crea la variable reserve que es donde se almacenaran los datos en JSON
+      reserve_id : "",
       state: "A",
       arrive_date: req.body.arrive_date,
       leave_date: req.body.leave_date,
@@ -276,7 +288,14 @@ function saveReserve(req, res) { //función para guardar una reserva
             res.status(500).send({"message": "Error en el servidor"});
             return;
           }
-          res.status(200).send({"reservation_id": reserve._id});
+          reserve.reserve_id = reserve._id
+          reserve.save(function (err,doc) {
+            if (err) {
+              res.status(500).send({"message": "Error en el servidor"});
+              return;
+            }
+            res.status(200).send({"reservation_id": reserve._id});
+          })
         });
 
     });
@@ -321,10 +340,17 @@ function saveHotelRes(req, res) { //función para guardar un hotel, Unicamente s
   });
 };
 */
+function saveRes(req, res) { //función para guardar un hotel, Unicamente se guardaron dos (medellin y bogotá)
+  var reser = new Reservations();
+  Reservations.save(function() {
+    res.send(reser);
+  });
+};
 
 module.exports = { // Exporta todos los metodos
 	getAll: getAll,
   getRooms: getRooms,
+  saveRes : saveRes,
   //saveRoom: saveRoom,
   //saveHotel: saveHotel,
   //saveHotelRes: saveHotelRes,

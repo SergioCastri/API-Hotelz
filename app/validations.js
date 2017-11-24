@@ -69,13 +69,13 @@ function valiStateReservationDate(leave_date){
 }
 
 function valiCitystatus1 (city){
-  if(city !== '05001'){
+  if(city == '05001'){
     return "Invalid city";
   }
 }
 
 function valiCitystatus2 (city){
-  if(city !== '11001'){
+  if(city == '11001'){
     return "Invalid city";
   }
 }

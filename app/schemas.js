@@ -34,7 +34,14 @@ var hotelResSchemaJSON = { //estructura del esquema, en formato json, excelente 
 
 function getHotelResSchema(){
   return hotelResSchemaJSON;
-} 
+}
+
+var reservationsSchemaJSON = {
+  reservations: [{}]
+}
+function getreservationsSchema(){
+  return reservationsSchemaJSON;
+}
 
 var roomsSchemaJSON = { //estructura del esquema, en formato json, excelente para nodo porque json surge de js y node esta basado en js
   hotel_id: String,
@@ -56,6 +63,7 @@ function getRoomsSchema(){
 }
 
 var reserveSchemaJSON = { //estructura del esquema, en formato json, excelente para nodo porque json surge de js y node esta basado en js
+  reserve_id: String,
   state: String,
   arrive_date: String,
   leave_date: String,
@@ -82,5 +90,6 @@ module.exports = { // Exporta todos los metodos
 	getHotelSchema : getHotelSchema,
   getRoomsSchema : getRoomsSchema,
   getReservesSchema : getReservesSchema,
-  getHotelResSchema : getHotelResSchema
+  getHotelResSchema : getHotelResSchema,
+  getreservationsSchema : getreservationsSchema
 };

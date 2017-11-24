@@ -40,11 +40,11 @@ describe('correct params in url', function() {
     assert.equal('Reservation deprecated',res);
   })
   it('Check city 1 reservation (state)', function() {
-    var res = ApiHotelz.valiCitystatus1(11001);
+    var res = ApiHotelz.valiCitystatus1('05001');
     assert.equal('Invalid city',res);
   })
   it('Check city 2 reservation (state)', function() {
-    var res = ApiHotelz.valiCitystatus2(05001);
+    var res = ApiHotelz.valiCitystatus2('11001');
     assert.equal('Invalid city',res);
   })
 
