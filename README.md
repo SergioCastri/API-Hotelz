@@ -2,7 +2,7 @@
 Backend Node-JS para la app Hotelz
 <<<<<<< HEAD
 
-Integrado con Codeship
+Integrado con Codeship, Heroku y Codacy
 
 Integrantes
 
