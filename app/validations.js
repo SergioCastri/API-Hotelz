@@ -19,7 +19,7 @@ function valiDateUrl(arrive_date, leave_date){
 }
 
 function valiCityUrl(city) {
-  if(city != 05001 || city != 11001){
+  if(city !== '05001' && city !== '11001'){
     return 'Invalid City';
   }
 }
@@ -51,11 +51,44 @@ function valiFormatDate(arrive_date, leave_date){
   }
 }
 
+function valiAvaliableDate(arrive_date_reserva, leave_date_reserva, arrive_date_consulta, leave_date_consulta){
+  var arrive = (new Date(arrive_date_reserva)).getTime();
+  var leave = (new Date(leave_date_reserva)).getTime();
+  if(((new Date(arrive_date_consulta)).getTime() >= arrive && (new Date(arrive_date_consulta)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
+      || ((new Date(leave_date_consulta)).getTime() > arrive && (new Date(arrive_date_consulta)).getTime() < leave)) {
+    return "room is not available";                                                       //Quita el campo cuantityReserves del JSON para evitar mostrarlo
+  }
+}
+
+function valiStateReservationDate(leave_date){
+  var actual = (new Date()).getTime();
+  var leave = (new Date(leave_date)).getTime();
+  if(actual > leave){
+    return "Reservation deprecated";
+  }
+}
+
+function valiCitystatus1 (city){
+  if(city !== '05001'){
+    return "Invalid city";
+  }
+}
+
+function valiCitystatus2 (city){
+  if(city !== '11001'){
+    return "Invalid city";
+  }
+}
+
 module.exports = { // Exporta todos los metodos
   valiCapaUrl : valiCapaUrl,
   valiDateUrl : valiDateUrl,
   valiCityUrl : valiCityUrl,
   valiRoomTypeUrl : valiRoomTypeUrl,
   valiActualDate : valiActualDate,
-  valiFormatDate : valiFormatDate
+  valiFormatDate : valiFormatDate,
+  valiAvaliableDate : valiAvaliableDate,
+  valiStateReservationDate : valiStateReservationDate,
+  valiCitystatus1 : valiCitystatus1,
+  valiCitystatus2 : valiCitystatus2
 };

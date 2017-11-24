@@ -26,12 +26,27 @@ describe('correct params in url', function() {
   it('Actual date validation', function() {
     var res = ApiHotelz.valiActualDate('2017-11-05');
   assert.equal('Arrive date should be higher than actual date',res);
-});
-it('check id reservation', function() {
-  var res = ApiHotelz.valiFormatDate('2017-11-30', '2017-11-31-96');
-  assert.equal('Error in the format of date',res);
-})
-
+  });
+  it('Check format date', function() {
+    var res = ApiHotelz.valiFormatDate('2017-11-30', '2017-11-31-96');
+    assert.equal('Error in the format of date',res);
+  });
+  it('Check avaliable of room', function() {
+    var res = ApiHotelz.valiAvaliableDate('2017-11-28', '2017-11-30', '2017-11-27', '2017-11-29');
+    assert.equal('room is not available',res);
+  })
+  it('Check date reservation (state)', function() {
+    var res = ApiHotelz.valiStateReservationDate('2017-11-20');
+    assert.equal('Reservation deprecated',res);
+  })
+  it('Check city 1 reservation (state)', function() {
+    var res = ApiHotelz.valiCitystatus1(11001);
+    assert.equal('Invalid city',res);
+  })
+  it('Check city 2 reservation (state)', function() {
+    var res = ApiHotelz.valiCitystatus2(05001);
+    assert.equal('Invalid city',res);
+  })
 
   /*it('Already a reserve exists', function() {
     var res = ApiHotelz.valiDateReserve('')

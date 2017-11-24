@@ -7,11 +7,11 @@ server.listen(port, function(){
 })
 
 var config = {
-    apiKey: "AIzaSyAI7M3n5HFlfkjIUJRxgBG11Ho8sIAdIHc",
-    authDomain: "apihotelznode.firebaseapp.com",
-    databaseURL: "https://apihotelznode.firebaseio.com",
-    projectId: "apihotelznode",
-    storageBucket: "apihotelznode.appspot.com",
-    messagingSenderId: "803982961548"
+  apiKey: "AIzaSyBPu2i5JN2L-THImOfA98EHnoj1M8j5mhw",
+  authDomain: "gohotels-5a589.firebaseapp.com",
+  databaseURL: "https://gohotels-5a589.firebaseio.com",
+  projectId: "gohotels-5a589",
+  storageBucket: "gohotels-5a589.appspot.com",
+  messagingSenderId: "827262016005"
 };
 firebase.initializeApp(config);

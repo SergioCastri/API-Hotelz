@@ -24,7 +24,7 @@ chai.use(chaiHttp);
 describe('GET /v1/rooms', function() {
 
     it('1. should return code 200 from getRoom function', function(done) {
-        request.get('/v1/rooms?arrive_date=2017-10-30&leave_date=2017-10-31&city=05001&hosts=3&room_type=L')
+        request.get('/v1/rooms?arrive_date=2017-12-30&leave_date=2017-12-31&city=05001&hosts=3&room_type=L')
             .expect(200)
             .end(function(err, res){
   		    		if (err) return done(err);
@@ -51,7 +51,7 @@ describe('GET /v1/rooms', function() {
     });
 
     it('4. should return a correct message Json Object', function(done) {
-        request.get('/v1/rooms?arrive_date=2017-10-30&leave_date=2017-10-31&city=05001&hosts=3&room_type=L')
+        request.get('/v1/rooms?arrive_date=2017-12-30&leave_date=2017-12-31&city=05001&hosts=3&room_type=L')
             .expect(200)
             .expect('Content-Type', /json/)
             .end(function(err, res){
@@ -148,7 +148,7 @@ describe('DELETE /v1/reservations', function() {
             .expect(200)
             .end(function(err, res){
   		    		if (err) return done(err);
-  					  done();              
+  					  done();
               models.close();
   			    });
     });

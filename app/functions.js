@@ -6,11 +6,16 @@ var validations = require('./validations.js');
 
 admin.initializeApp({
   credential: admin.credential.cert({
-    projectId: "apihotelznode",
-    clientEmail: "firebase-adminsdk-7nrk2@apihotelznode.iam.gserviceaccount.com",
-    private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDYtCt9eO6yFu9c\nSRpN8/8B1+or7ESvridGXlHCimYKm0LrhsbltusBr175WwqaEEbNoNo25JzqqVfp\nflGxAgvvZx51vWX5ugzqG/ruCG2E4LFuu5f6Neq1SFM34w76FgN4nQthQZdv/isE\n8ooF6LRAU26KvMQColW18RAUhPEcZW10ZAXGN+FPDBn0DGEYkN6kRtJ+f/ZDRDnW\ncXRtv7dVnP+D5/koRhS8MsIH8YQmrpO/Ce8k9WnODRzgrf6+eGpY1I2OjGdvczvY\nKimB51RNszxdGJ8pwKc3eTyTzeDldnKkhHO/Bt0ydsIFLvHUXeJv1miCooo3Yo7X\nqrjBLid1AgMBAAECggEACrNM0XTa/nwPmi7kPQn/Dcl/qecQVjIYhOBBPm9Z42IF\nb36tIWiDRAbzlDGuEpZFVL/W/pkSdCuOqHwruac9onbk+WXehvKsUr61HjNYKxSd\nlkzuOnVBRMMl6XoirMUmVeU/9lpdiV1oz4/6skN/wQxi8Tf/IBfWznWGjdN/BLVD\nKU9nm7M8xTA5hbQw0R2wrors+IVJZJ7AFaj3Bjs4r9h0WsaFr5j9WQEtlYoi7m+8\nd6SrNsIcYG54a51DrqmYsCMqpultYSTK73ZA+b4pQ7C8OPbV15QjcHoFM6yOQayJ\ngHMTmqC7nOJgxXBSN6WSIIyEy36AbxpQtlFAJkx9IQKBgQDywGQDWG0Qav899+RQ\nVtbjxDHiJUBRtQbCoWR+q1t3Zf0WhdFVv5citaUIy2wQS+n4jf/CPGa9CVH2TIjF\nR/14UuK3BgkG5WUJQtkWOgXrz+0Cmhoe8G5v97kCVrV+W+NYWrdUkSNcEUNXOKQC\nNqVaBLuRj9CbaAbty7YUlIyEFQKBgQDkh9pBTFkvscVa/D0RJdZKTsPfNMrcITfM\nwaQvyg8Oku6PgoMBkHX3M3cSaCbUGnno1seri9mcx1qNQr+bSR28Lae7ArqO6SSP\nIfSpkQFIEZt844kxRjywv/EkQ6QON2yTjiakM/Je8G53L/KgqztqRn4gPASCIIyU\nHzA7ZFUN4QKBgQC4+dd8IR6CezXh74pfmbyHtNHaJE6dtFbhaoAccdDx65puViwM\nrkCpZ0bJq9C9nks8Zl/0j3guJfL5vpod0lyYGni9xHCOe7CA3Rp08GPgrAFLkUfE\nOau90EN/P7lu/u//PKkkXLBYEKOCzBtVwHRBYwfWxILOWPemrisiBYwJfQKBgQCL\n11HH2VdN5yNUDLu1jYi2icI0CJMF5tHFWs0EbUmPanvOl1dhEqwM65I2UkNIUTc+\nMoeWQoqT9C1F+Y1UEYa/itRzjDTqlGHJsEaNqGy3VAbogjeGTmt+4MVHoph2FpY7\nKKYenqb2T3vZNR7sEDvYSXCOewtrMU20qe0Sus+NIQKBgCae6Sjj+KFPKPHIbyU4\nKfBGVjcwASVCgLNsSQGgXenwJklkVWhkEbkEdXz/HAlyhzNuKttQSUQSG2qR+cOj\nKTnNmGA3JAcgjU6KqnWja9H2al6K1s4APgvDdvKz68/tPPqD3t3cM6Bb9+ThVQdg\nZocXfJhfg+xHn0Zs3ir32S1P\n-----END PRIVATE KEY-----\n",
-  }),
-  databaseURL: "https://apihotelznode.firebaseio.com"
+    projectId: "gohotels-5a589",
+    private_key_id: "f535730ce6fbf8ae5ef37388d2efc02edc017c7f",
+    client_email: "firebase-adminsdk-4ho08@gohotels-5a589.iam.gserviceaccount.com",
+    client_id: "109587161632761692215",
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://accounts.google.com/o/oauth2/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4ho08%40gohotels-5a589.iam.gserviceaccount.com",
+    private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCavZnRBlZ0cMyM\n6B1Kw+FjeF87zPkOFcmMKa3+jPlhK1DAiUMeX+KCHqW+yvBhogr6JNBst6V3bGTU\ngkapSJ1aCb2wHmsBKBkCmY2VmjrzEZCiuI4tUJz5m0xsz7xgrQbY9cO+x7WNNkPR\n7oyaAQiR+m3s260Bmge79V7Xw3cDcjkKHajhV1lZ04q0zyYi6q36/YRN1NEalf87\nxspXxGVUqWfNG7iDhsERBVWxRCM0k4y87xKIQZYcZXjjr0GJM+7Kqn224kevsusW\noQF32Zcw7QgZX/yiLWlmXmCt4MBxOef5fYUfmnNfMgEXKrorZVAOPzRHm/IQjAO3\n6obt1PQLAgMBAAECggEAOs5XSFKKRJIhimMjzqgGXdD/EDDjbXDmOXgVgal9lGnr\ntF/1u/Ngl2aiQpHJLLFyToHzG33nSi1NXF1uESNheTg+eFH3BGeCqbRFVFdak8lX\nGB/fGGWMYmeccbW4t1zKP2WW0EgBPPskZwGrOVOvOBrd76fEZdltmway1niYIByO\np3Qs9ihNo20aeYPxRwb7m7suRE663qfCS04tiM786RkkXJ1cc7uxdvZb+0I/tOqe\nBn4DJMwngmjssrGJh4jtrd06F3vu4KLhOmufXBKLcw2j1tkGuCQYEg9ZFQ4rSsv6\nP3Zgh/lAP/KJzXOm+E/weW/QCY+PULzqYKuUrXjkUQKBgQDZV/trC/AuwSj6vluw\n6YMQXT6gdu5xLUc35SFzURnberghkfl5cL3CnoLxB5gTfdsbXuBmA8moplu4YERo\ndr/gPcCpSZgEvwwNQEaEzvBM7gDyZM63QytNKtZjFGC7QVc58qyHO7Y3C+t9J9cP\nhXXPXfrHnbk0mCen1Sr8/DRzNwKBgQC2QzK0Iy3Fw/5QVN3K6uoQ1R5wuU7F6wT3\n3QDkvOa2ay3h/wGsM2h3Eh41My1wZz4eBEiBW/+U/0txFXl7gTteLmb2ZpvUQPN8\nJ/+Qdam2Fqv1GLFylc499ynjXUZfwKhOkHYrcQpI72Zm/YRXiRBTGU/mna3GiHHl\nDFtJoTtXzQKBgQDV8Ow0eCDp9QugnsblA0cXUaH3FHsr/vTuyWY+/CMmz8r2iJl4\n+AhizeN43Q/OiAGpFKBw6uOTVoZMnL5Z0iKX2lGOkjnI2kJDvPRtgMI8B7/42lA9\nRyoVoMg96W46hVwWV5GK4LVBxEL/BLuGtMm94PWdjt0jL29Bnuzc8Gm0ywKBgEVZ\nPCmeWQQuls0p/VoAGB9fd72cRIS576H/zR87YO13ynV6+b/zr4PeuO+1EUz7e38g\nUhYmUxD2MlZMvXRor5YeQb7vO8t/CyXqcisdGf3WkocnZh0bMuYQ7Tc9flFglKmP\n/eZ5lFg7/tKhE4Ha/QMhVm2BAWXQ9MUZ9oIFfvbhAoGBAIozmlAm+X8tiRm9uhZr\njOl6NnJDOlwuUnSp3Yuuk257IJL5dYiXdbisF2ze0Tlm5Foz1nI9K1kPHe7d5qMA\nPKrr9R/5L8Kai8r2r3V6l+4jFXuxmWAeMvc4lAgXdMKDEkm/9INl+SY6orcnNfDY\nrSDByfrpFabeV3VBKUCIp9ol\n-----END PRIVATE KEY-----\n"
+  })
 });
 
 var json, json1;
@@ -20,13 +25,6 @@ Room = models.getRoom();
 Reserve = models.getReserve();
 Hotel = models.getHotel();
 HotelRes = models.getHotelRes();
-
-/*function valiDateReserve(arrive_date, leave_date){
-  if(!(((new Date(req.query.arrive_date)).getTime() >= arrive && (new Date(req.query.arrive_date)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
-      || ((new Date(req.query.leave_date)).getTime() > arrive && (new Date(req.query.arrive_date)).getTime() < leave))) {
-    return 'Invalid Date'
-  }
-}*/
 
 function signInWithGoogle(){
   var idToken = req.header.Authorization;
@@ -46,8 +44,6 @@ function signInWithGoogle(){
   });
 }
 
-
-
 function getReservations(req, res){
   //fbjson = signInWithGoogle();
   //var emailUser = fbjson.email;
@@ -66,26 +62,28 @@ function getReservations(req, res){
       Reserve.find({ 'user.email': email }, '-__v', function(err, doc) {
         var actual = (new Date()).getTime();
         for (let i = 0; i < doc.length; i++) {
-          var lvDate = (new Date(doc[i].leave_date)).getTime();
-          if(actual > lvDate){
+          var valistateres = validations.valiStateReservationDate(doc[i].leave_date)
+          if(valistateres){
             doc[i].state = 'D';
             doc[i].save(function() {
             })
           }
-          if(doc[i].hotel_id == '05001'){
+          var valicitystatus = validations.valiCitystatus1(doc[i].hotel_id);
+          if(valicitystatus){
             json.reservation[j] = doc[i];
             j++;
           }
         }
         j=0
         for (let i = 0; i < doc.length; i++) {
-          var lvDate = (new Date(doc[i].leave_date)).getTime();
-          if(actual > lvDate){
+          var valiStateResDate = validations.valiStateReservationDate(doc[i].leave_date);
+          if(valiStateResDate){
             doc[i].state = 'D';
             doc[i].save(function() {
             })
           }
-          if(doc[i].hotel_id == '11001'){
+          var valicitystatus2 = validations.valiCitystatus2(doc[i].hotel_id);
+          if(valicitystatus2){
             json1.reservation[j] = doc[i];
             j++;
           }
@@ -113,9 +111,19 @@ function deleteReservations(req, res) {
 };
 
 function getRooms(req, res){ // función para obtener todos los cuartos disponibles
-  validations.valiCityUrl(req.query.city);
-  validations.valiCapaUrl(req.query.hosts);
-  validations.valiRoomTypeUrl(req.query.room_type);
+  var myMessageCity = validations.valiCityUrl(req.query.city);
+  if(myMessageCity){
+    res.status(400).send({"message": "No existe hotel en esa ciudad"});
+  }
+  var myMessageCapa = validations.valiCapaUrl(req.query.hosts);
+  if(myMessageCapa){
+    res.status(400).send({"message": "no puede haber mas de 5 personas por habitacion"});
+  }
+  var myMessageRt = validations.valiRoomTypeUrl(req.query.room_type);
+  if(myMessageRt){
+    res.status(400).send({"message": "no existe ese tipo de habitación"});
+  }
+
 	Room.find({hotel_id: req.query.city, room_type: req.query.room_type, capacity: parseInt(req.query.hosts)},  //Busca habitaciones filtrando por
    '-_id -__v -hotel_id', function(err, doc) {                                                                //id del hotel, por tipo de habitaciones
       if(doc.length == 0) {                                                                                   //y por capacidad de esta, ademas de
@@ -123,29 +131,29 @@ function getRooms(req, res){ // función para obtener todos los cuartos disponib
         return;                                                                                               //los campos _id,__v y hotel_id
       }
       json = doc;
+      var myMessageDataUrl = validations.valiDateUrl(req.query.arrive_date, req.query.leave_date);
+      if(myMessageDataUrl){
+        res.status(400).send({"message": "fecha de llegada deber mayor a la de salida"});
+      }
 
-      validations.valiDateUrl(req.query.arrive_date, req.query.leave_date);
       dates = (new Date(req.query.leave_date)).getTime() - (new Date(req.query.arrive_date)).getTime(); //recupera el numero de dias en milisegundos que el usuario reservó
       dates = parseInt(dates / 86400000);             //recupera el numero de dias que se hospedara el usuario
       json[0].price = json[0].price * dates;  //calcula el precio segun la cantidad de dias que se hospedara ye l precio por dia de la habitacion
-
 
       var quantityReserves = [];
 
       Reserve.find({hotel_id: req.query.city, room_type: req.query.room_type, capacity: parseInt(req.query.hosts)},     //busca las reservaciones existentes
        '-_id -__v',                                                                                               //por room_type, hotel_id, y capacidad
        function(err, doc) {
-        for(var i = 0; i < doc.length; i++) {                              //busca las habitaciones que hay disponibles segun la consulta que
-          var arrive = (new Date(doc[i].arrive_date)).getTime();           //el susario realizó
-          var leave = (new Date(doc[i].leave_date)).getTime();
-
-          if(((new Date(req.query.arrive_date)).getTime() >= arrive && (new Date(req.query.arrive_date)).getTime() < leave)       //Compara que la habitacion este disponible para las fechas solicitadas
-              || ((new Date(req.query.leave_date)).getTime() > arrive && (new Date(req.query.arrive_date)).getTime() < leave)) {
-            quantityReserves.push(doc[i]);                                                       //Quita el campo cuantityReserves del JSON para evitar mostrarlo
-          } else {                                                                    //si la consulta es disponible
-            doc[i] = "";
-          }
-        }
+         for(var i = 0; i < doc.length; i++) {
+             var valiDateAvaliable = validations.valiAvaliableDate(doc[i].arrive_date, doc[i].leave_date, req.query.arrive_date, req.query.leave_date);                           //busca las habitaciones que hay disponibles segun la consulta que
+             console.log(valiDateAvaliable);
+             if (valiDateAvaliable){
+               quantityReserves.push(doc[i]);                                                       //Quita el campo cuantityReserves del JSON para evitar mostrarlo
+             } else {                                                                    //si la consulta es disponible
+               doc[i] = "";
+             }
+           }
 
         Hotel.findOne({hotel_id: req.query.city}, '-_id -__v', function(err, doc) {   //Busca los datos del hotel filtrando por codigo de este
           if(doc == null) {                                                                       //muestra en la consulta de la habitacion todos los datos
@@ -176,29 +184,7 @@ function getAll(req, res){ // función para obtener todas las habitaciones
 };
 
 
-function saveHotel(req, res) { //función para guardar un hotel, Unicamente se guardaron dos (medellin y bogotá)
-  var hotel = new Hotel({
-    hotel_id: req.body.hotel_id, hotel_name: req.body.hotel_name, hotel_location: {
-    address: req.body.hotel_location.address, lat: req.body.hotel_location.lat, long: req.body.hotel_location.long},
-    hotel_thumbnail: req.body.hotel_thumbnail, check_in: req.body.check_in,
-    check_out: req.body.check_out, hotel_website: req.body.hotel_website});
 
-  hotel.save(function() {
-    res.send(hotel);
-  });
-};
-
-function saveHotelRes(req, res) { //función para guardar un hotel, Unicamente se guardaron dos (medellin y bogotá)
-  var hotelRes = new HotelRes({
-    hotel_id: req.body.hotel_id, hotel_name: req.body.hotel_name, hotel_location: {
-    address: req.body.hotel_location.address, lat: req.body.hotel_location.lat, long: req.body.hotel_location.long},
-    hotel_thumbnail: req.body.hotel_thumbnail, check_in: req.body.check_in,
-    check_out: req.body.check_out, hotel_website: req.body.hotel_website});
-
-  hotelRes.save(function() {
-    res.send(hotelRes);
-  });
-};
 
 function saveReserve(req, res) { //función para guardar una reserva
 
@@ -237,7 +223,7 @@ function saveReserve(req, res) { //función para guardar una reserva
 
 
 
-  var myMessage = validations.valiFormatDate(reserve.arrive_date, reserve.leave_date);
+  let myMessage = validations.valiFormatDate(reserve.arrive_date, reserve.leave_date);
   if(myMessage){
     res.status(400).send({"message": "Error en el formato de las fechas"});
   }
@@ -299,7 +285,7 @@ function saveReserve(req, res) { //función para guardar una reserva
 
 };
 
-function saveRoom(req, res) { //función para guarda la habitacion
+/*function saveRoom(req, res) { //función para guarda la habitacion
   var room = new Room({
     hotel_id: req.body.hotel_id, room_type: req.body.room_type, capacity: req.body.capacity,  rooms_number: req.body.rooms_number,
     price: req.body.price, currency: req.body.currency, room_thumbnail: req.body.room_thumbnail, description: req.body.description,
@@ -310,12 +296,38 @@ function saveRoom(req, res) { //función para guarda la habitacion
   });
 };
 
+
+function saveHotel(req, res) { //función para guardar un hotel, Unicamente se guardaron dos (medellin y bogotá)
+  var hotel = new Hotel({
+    hotel_id: req.body.hotel_id, hotel_name: req.body.hotel_name, hotel_location: {
+    address: req.body.hotel_location.address, lat: req.body.hotel_location.lat, long: req.body.hotel_location.long},
+    hotel_thumbnail: req.body.hotel_thumbnail, check_in: req.body.check_in,
+    check_out: req.body.check_out, hotel_website: req.body.hotel_website});
+
+  hotel.save(function() {
+    res.send(hotel);
+  });
+};
+
+function saveHotelRes(req, res) { //función para guardar un hotel, Unicamente se guardaron dos (medellin y bogotá)
+  var hotelRes = new HotelRes({
+    hotel_id: req.body.hotel_id, hotel_name: req.body.hotel_name, hotel_location: {
+    address: req.body.hotel_location.address, lat: req.body.hotel_location.lat, long: req.body.hotel_location.long},
+    hotel_thumbnail: req.body.hotel_thumbnail, check_in: req.body.check_in,
+    check_out: req.body.check_out, hotel_website: req.body.hotel_website});
+
+  hotelRes.save(function() {
+    res.send(hotelRes);
+  });
+};
+*/
+
 module.exports = { // Exporta todos los metodos
 	getAll: getAll,
   getRooms: getRooms,
-  saveRoom: saveRoom,
-  saveHotel: saveHotel,
-  saveHotelRes: saveHotelRes,
+  //saveRoom: saveRoom,
+  //saveHotel: saveHotel,
+  //saveHotelRes: saveHotelRes,
   saveReserve: saveReserve,
   getReservations : getReservations,
   deleteReservations: deleteReservations
