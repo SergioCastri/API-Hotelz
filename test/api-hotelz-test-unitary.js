@@ -26,7 +26,13 @@ describe('correct params in url', function() {
   it('Actual date validation', function() {
     var res = ApiHotelz.valiActualDate('2017-11-05');
   assert.equal('Arrive date should be higher than actual date',res);
-  })
+});
+it('check id reservation', function() {
+  var res = ApiHotelz.valiFormatDate('2017-11-30', '2017-11-31-96');
+  assert.equal('Error in the format of date',res);
+})
+
+
   /*it('Already a reserve exists', function() {
     var res = ApiHotelz.valiDateReserve('')
   })*/
