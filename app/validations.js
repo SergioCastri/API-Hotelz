@@ -43,10 +43,19 @@ function valiActualDate(arrive_date) {
   }
 }
 
+function valiFormatDate(arrive_date, leave_date){
+  var arrive_date_split = arrive_date.split("-");           //Vector de fecha [YYYY,MM,AA]
+  var leave_date_split = leave_date.split("-");
+  if(arrive_date_split.length != 3 || leave_date_split.length != 3) {  //Valida que el formato de la fecha sea correcto
+    return "Error in the format of date";
+  }
+}
+
 module.exports = { // Exporta todos los metodos
   valiCapaUrl : valiCapaUrl,
   valiDateUrl : valiDateUrl,
   valiCityUrl : valiCityUrl,
   valiRoomTypeUrl : valiRoomTypeUrl,
-  valiActualDate : valiActualDate
+  valiActualDate : valiActualDate,
+  valiFormatDate : valiFormatDate
 };

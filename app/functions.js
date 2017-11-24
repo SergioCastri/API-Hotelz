@@ -235,12 +235,11 @@ function saveReserve(req, res) { //función para guardar una reserva
       }
     });
 
-  var arrive_date_split = reserve.arrive_date.split("-");           //Vector de fecha [YYYY,MM,AA]
-  var leave_date_split = reserve.leave_date.split("-");             //Vector de fecha [YYYY,MM,AA]
 
-  if(arrive_date_split.length != 3 || leave_date_split.length != 3) {  //Valida que el formato de la fecha sea correcto
+
+  var myMessage = validations.valiFormatDate(reserve.arrive_date, reserve.leave_date);
+  if(myMessage){
     res.status(400).send({"message": "Error en el formato de las fechas"});
-    return;
   }
 
   if((new Date(reserve.arrive_date)).getTime() >= (new Date(reserve.leave_date)).getTime()) {   //Valida que la fecha de salida se mayor a la de llegada
