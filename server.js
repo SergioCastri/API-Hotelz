@@ -1,5 +1,5 @@
 var server = require('./app')
-var port = process.env.PORT || 3001;
+var port = process.env.PORT || 3002;
 var firebase = require('firebase');
 
 server.listen(port, function(){
