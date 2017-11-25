@@ -27,36 +27,63 @@ Hotel = models.getHotel();
 HotelRes = models.getHotelRes();
 Reservations = models.getReservations();
 
-function signInWithGoogle(){
-  var idToken = req.header.Authorization;
-  admin.auth().verifyIdToken(idToken)
-  .then(function(decodedToken) {
-    var uid = decodedToken.uid;
-    admin.auth().getUser(uid)
-      .then(function(userRecord) {
-        console.log("Successfully fetched user data:", userRecord.toJSON());
-        return userRecord.toJSON();
-      })
-      .catch(function(error) {
-        console.log("Error fetching user data:", error);
-      });
-  }).catch(function(error) {
-    res.status(400).send({"message": "Token invalido"});
-  });
+function getReservations(req, res){
+  var idToken = req.headers.authorization;
+  console.log(idToken)
+  if(idToken){
+    admin.auth().verifyIdToken(idToken)
+    .then(function(decodedToken) {
+      var uid = decodedToken.uid;
+      admin.auth().getUser(uid)
+        .then(function(userRecord) {
+          console.log("Successfully fetched user data:");
+          reservationHelper(req,res,userRecord.toJSON());
+        })
+        .catch(function(error) {
+          console.log("Error fetching user data:", error);
+        });
+    }).catch(function(error) {
+      res.status(400).send({"message": "Token invalido... "+error});
+    });
+  }else{
+    res.status(401).jsonp({"message":"Token invalido..."})
+  }
 }
 
-function getReservations(req, res){
-  //fbjson = signInWithGoogle();
-  //var emailUser = fbjson.email;
-  // var array[];
+function deleteReservations(req, res){
+  var idToken = req.headers.authorization;
+  console.log(idToken)
+  if(idToken){
+    admin.auth().verifyIdToken(idToken)
+    .then(function(decodedToken) {
+      var uid = decodedToken.uid;
+      admin.auth().getUser(uid)
+        .then(function(userRecord) {
+          console.log("Successfully fetched user data:");
+            deleteReservationsHelper(req,res,userRecord.toJSON());
+        })
+        .catch(function(error) {
+          console.log("Error fetching user data:", error);
+        });
+    }).catch(function(error) {
+      res.status(400).send({"message": "Token invalido... "+error});
+    });
+  }else{
+    res.status(401).jsonp({"message":"Token invalido..."})
+  }
+}
+
+function reservationHelper(req, res, userRecord){
   var j=0;
-  var email = "camigomez35@gmail.com";
+  var email = userRecord.email;
+  console.log("usuario " + userRecord.email);
   var jsonRes, reserva;
   HotelRes.find({}, '-_id -__v', function(err, doc) {   //Busca los datos del hotel filtrando por codigo de este
     if(doc == null) {                                                                       //muestra en la consulta de la habitacion todos los datos
       res.status(200).jsonp({"message": "No existe el hotel"});
       return;
     }else{
+      console.log(doc);
       jsonRes = doc;
       json1 = doc[1];  // Bog
       json = doc[0];   // Med
@@ -105,11 +132,13 @@ function getReservations(req, res){
       });
     }
   });
-};
+}
 
+function deleteReservationsHelper(req, res, userRecord) {
 
-function deleteReservations(req, res) {
-  Reserve.findOne({_id : req.query.reserve_id}, '-__v', function(err, doc) {
+  var email = userRecord.email;
+
+  Reserve.findOne({_id : req.query.reserve_id, 'user.email': email}, '-__v', function(err, doc) {
     if(err) {
         res.status(500).send({"message": "No existe esa reservación"});
     }else{
