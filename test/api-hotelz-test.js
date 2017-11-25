@@ -155,4 +155,10 @@ describe('DELETE /v1/reservations', function() {
   			    });
     });
 });
+
+
+udea.regalos.regalovendido
+udea.regalos.amazon.regalovendido
+udea.regalos.ebay.regalovendido
+udea.regalos.mercadolibre.regalovendido
 */
